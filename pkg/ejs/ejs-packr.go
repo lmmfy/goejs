@@ -3,6 +3,6 @@
 
 // You can use the "packr clean" command to clean up this,
 // and any other packr generated files.
-package jslib
+package ejs
 
-import _ "github.com/lmmfy/goejs/pkg/jslib/packrd"
+import _ "github.com/lmmfy/goejs/pkg/ejs/packrd"

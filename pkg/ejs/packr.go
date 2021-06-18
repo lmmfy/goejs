@@ -1,4 +1,4 @@
-package jslib
+package ejs
 
 import (
 	"bytes"
