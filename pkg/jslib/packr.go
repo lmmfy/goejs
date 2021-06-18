@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	Version               = "v1.0"
+	Version               = "v1.0.0"
 	DefaultOpenDelimiter  = "<"
 	DefaultCloseDelimiter = ">"
 	DefaultDelimiter      = "%"

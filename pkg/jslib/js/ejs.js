@@ -4,7 +4,6 @@ var _DEFAULT_CLOSE_DELIMITER = '{{.CloseDelimiter}}';
 var _DEFAULT_DELIMITER = '{{.Delimiter}}';
 var _NAME = 'ejs';
 var _REGEX_STRING = '(<%%|%%>|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)';
-var _BOM = /^\uFEFF/;
 var _JS_IDENTIFIER = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/;
 var _DEFAULT_LOCALS_NAME = 'locals';
 var _OPTS_PASSABLE_WITH_DATA = ['delimiter', 'debug', 'compileDebug', 'rmWhitespace', 'filename'];
