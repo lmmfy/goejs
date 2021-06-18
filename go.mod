@@ -1,6 +1,6 @@
 module github.com/lmmfy/goejs
 
-go 1.16
+go 1.14
 
 require (
 	github.com/dop251/goja v0.0.0-20210614154742-14a1ffa82844
