@@ -1,6 +1,7 @@
 package otto
 
 import (
+	"io/ioutil"
 	"os"
 	"regexp"
 	"testing"
@@ -73,7 +74,7 @@ func Test_ottoEngine_Exec(t *testing.T) {
 	e := NewDefaultOttoEngine()
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tpl, err := os.ReadFile(tt.args.file)
+			tpl, err := ReadFile(tt.args.file)
 			assert.NoError(t, err)
 			if err != nil {
 				return
@@ -89,4 +90,12 @@ func Test_ottoEngine_Exec(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ReadFile(file string) ([]byte, error) {
+	f, err := os.Open(file)
+	if err != nil {
+		return nil, err
+	}
+	return ioutil.ReadAll(f)
 }

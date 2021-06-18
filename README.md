@@ -1,5 +1,9 @@
 # goejs
 
+![](https://github.com/lmmfy/goejs/workflows/gotest/badge.svg)
+![](https://github.com/lmmfy/goejs/workflows/style-check/badge.svg)
+[![GoDoc](https://godoc.org/github.com/lmmfy/goejs?status.svg)](https://godoc.org/github.com/lmmfy/goejs
+
 provider a powerful template by using ejs. But you should **very careful to using it in a high traffic business**.
 
 
