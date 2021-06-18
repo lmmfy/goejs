@@ -4,10 +4,9 @@
 ![](https://github.com/lmmfy/goejs/workflows/gotest/badge.svg)
 ![](https://github.com/lmmfy/goejs/workflows/style-check/badge.svg)
 [![codecov](https://codecov.io/gh/lmmfy/goejs/branch/main/graph/badge.svg)](https://codecov.io/gh/lmmfy/goejs)
-[![GoDoc](https://godoc.org/github.com/lmmfy/goejs?status.svg)](https://godoc.org/github.com/lmmfy/goejs
+[![GoDoc](https://godoc.org/github.com/lmmfy/goejs?status.svg)](https://godoc.org/github.com/lmmfy/goejs)
 
-provider a powerful template by using ejs. But you should **very careful to using it in a high traffic business**.
-
+provider a powerful template by using ejs in go interpreter. But you should **very careful to using it in a high traffic business**.
 
 ## Usage
 
