@@ -2,7 +2,7 @@ package otto
 
 import (
 	"github.com/lmmfy/goejs/pkg/contract"
-	"github.com/lmmfy/goejs/pkg/jslib"
+	"github.com/lmmfy/goejs/pkg/ejs"
 	"github.com/robertkrimen/otto"
 )
 
@@ -30,7 +30,7 @@ func NewOttoEngine(script contract.Script) contract.Engine {
 
 func NewDefaultOttoEngine() contract.Engine {
 	engine := &ottoEngine{
-		script: jslib.NewJsScript(),
+		script: ejs.NewJsScript(),
 		vm:     otto.New(),
 	}
 	engine.init()

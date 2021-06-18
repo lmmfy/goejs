@@ -6,12 +6,13 @@ import (
 	"regexp"
 	"testing"
 
+	"github.com/lmmfy/goejs/pkg/ejs"
 	"github.com/stretchr/testify/assert"
 )
 
 var singleSpacePattern = regexp.MustCompile(`\s+`)
 
-func Test_ottoEngine_Exec(t *testing.T) {
+func Test_ottoDefaultEngine_Exec(t *testing.T) {
 	type args struct {
 		file string
 		data interface{}
@@ -90,6 +91,13 @@ func Test_ottoEngine_Exec(t *testing.T) {
 			}
 		})
 	}
+}
+
+func Test_ottoEngine_Exec(t *testing.T) {
+	e := NewOttoEngine(ejs.NewJsScript(ejs.WithOpenDelimiter("{"), ejs.WithCloseDelimiter("}")))
+	res, err := e.Exec("hello, {%= name %}", map[string]interface{}{"name": "world"}, nil)
+	assert.NoError(t, err)
+	assert.Equal(t, res, "hello, world")
 }
 
 func ReadFile(file string) ([]byte, error) {

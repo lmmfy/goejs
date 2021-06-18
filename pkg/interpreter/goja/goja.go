@@ -5,7 +5,7 @@ import (
 
 	"github.com/dop251/goja"
 	"github.com/lmmfy/goejs/pkg/contract"
-	"github.com/lmmfy/goejs/pkg/jslib"
+	"github.com/lmmfy/goejs/pkg/ejs"
 )
 
 const callRender = `
@@ -26,7 +26,7 @@ type gojaEngine struct {
 // Deprecated: exists fault error.
 func NewDefauleGojaEngine() contract.Engine {
 	engine := &gojaEngine{
-		script: jslib.NewJsScript(),
+		script: ejs.NewJsScript(),
 	}
 	engine.code = engine.script.GetScriptCode()
 	program, err := goja.Compile("", engine.code+callRender, true)
