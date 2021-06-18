@@ -1,4 +1,4 @@
-name: gotest
+name: style-check
 on:
   # Trigger the workflow on push or pull request,
   # but only for the master branch
@@ -12,7 +12,7 @@ on:
       - '**.png'
 jobs:
   run:
-    name: go test
+    name: vet and gofmt
     strategy:
       matrix:
         go-version: [1.14.x, 1.15.x, 1.16.x]
@@ -25,9 +25,15 @@ jobs:
       # This step checks out a copy of your repository.
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Go test
-        env:
-          GOVERSION: ${{ matrix.go-version }}
+      - name: Go vet check
         run: |
-          go test -coverprofile=coverage.txt $(go list ./...)
-          bash <(curl -s https://codecov.io/bash) -F unittest-$GOVERSION
+          go vet ./...
+      - name: Gofmt check
+        run: |
+          diff=`find . -name "*.go" | xargs gofmt -s -d`
+          if [[ -n "${diff}" ]]; then
+               echo "Gofmt check failed :"
+               echo "${diff}"
+               echo "Please run this command to fix: [find . -name "*.go" | xargs gofmt -s -w]"
+               exit 1
+          fi

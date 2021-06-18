@@ -1,5 +1,11 @@
 # goejs
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/lmmfy/goejs)](https://goreportcard.com/report/github.com/lmmfy/goejs)
+![](https://github.com/lmmfy/goejs/workflows/gotest/badge.svg)
+![](https://github.com/lmmfy/goejs/workflows/style-check/badge.svg)
+[![codecov](https://codecov.io/gh/lmmfy/goejs/branch/main/graph/badge.svg)](https://codecov.io/gh/lmmfy/goejs)
+[![GoDoc](https://godoc.org/github.com/lmmfy/goejs?status.svg)](https://godoc.org/github.com/lmmfy/goejs
+
 provider a powerful template by using ejs. But you should **very careful to using it in a high traffic business**.
 
 
