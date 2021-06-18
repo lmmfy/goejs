@@ -28,6 +28,10 @@ fmt.Println(got) // hello, goejs!
 
 goja exists error, use otto first.
 
+## why use ejs
+
+compare top js template engine on [bestofjs](https://bestofjs.org/projects?tags=template), feature(call function in template) in ejs is most powerful.
+
 ## feature
 
 keep most of the features of ejs(js version)
