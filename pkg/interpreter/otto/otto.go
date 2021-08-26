@@ -1,6 +1,8 @@
 package otto
 
 import (
+	"os"
+
 	"github.com/lmmfy/goejs/pkg/contract"
 	"github.com/lmmfy/goejs/pkg/ejs"
 	"github.com/robertkrimen/otto"
@@ -14,8 +16,8 @@ var res = exports.render(tpl, data, options);
 type ottoEngine struct {
 	script contract.Script
 	// compiledEjs *otto.
-	vm          *otto.Otto
-	compiledEjs *otto.Script
+	vm             *otto.Otto
+	compiledScript *otto.Script
 }
 
 func NewOttoEngine(script contract.Script) contract.Engine {
@@ -38,13 +40,29 @@ func NewDefaultOttoEngine() contract.Engine {
 	return engine
 }
 
+func (e *ottoEngine) RegisterLibrary(file string) error {
+	fileContent, err := os.ReadFile(file)
+	if err != nil {
+		return err
+	}
+	return e.compileScript(e.script.GetScriptCode() + ";\n" + string(fileContent))
+}
+
+func (e *ottoEngine) compileScript(script string) error {
+	compiledScript, err := e.vm.Compile("", script+callRender)
+	if err != nil {
+		return err
+	}
+	e.compiledScript = compiledScript
+	return nil
+}
+
 func (e *ottoEngine) init() {
 	script := e.script.GetScriptCode()
-	compiledScript, err := e.vm.Compile("", script+callRender)
+	err := e.compileScript(script)
 	if err != nil {
 		panic(err)
 	}
-	e.compiledEjs = compiledScript
 }
 
 func (e *ottoEngine) Exec(tpl string, data interface{}, opt *contract.Option) (string, error) {
@@ -58,7 +76,7 @@ func (e *ottoEngine) Exec(tpl string, data interface{}, opt *contract.Option) (s
 	vm.Set("tpl", tpl)
 	vm.Set("data", data)
 	vm.Set("options", opt)
-	_, err := vm.Run(e.compiledEjs)
+	_, err := vm.Run(e.compiledScript)
 	if err != nil {
 		return "", err
 	}

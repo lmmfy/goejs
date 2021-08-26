@@ -100,6 +100,15 @@ func Test_ottoEngine_Exec(t *testing.T) {
 	assert.Equal(t, res, "hello, world")
 }
 
+func Test_ottoEngine_ExecWithJsLibrary(t *testing.T) {
+	e := NewOttoEngine(ejs.NewJsScript(ejs.WithOpenDelimiter("{"), ejs.WithCloseDelimiter("}")))
+	err := e.RegisterLibrary("./testdata/lib.js")
+	assert.NoError(t, err)
+	res, err := e.Exec("{%= sum(1, 2) %}", nil, nil)
+	assert.NoError(t, err)
+	assert.Equal(t, res, "3")
+}
+
 func ReadFile(file string) ([]byte, error) {
 	f, err := os.Open(file)
 	if err != nil {
