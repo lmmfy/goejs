@@ -1,6 +1,7 @@
 package contract
 
 type Engine interface {
+	RegisterLibrary(file string) error
 	Exec(tpl string, data interface{}, opt *Option) (string, error)
 }
 

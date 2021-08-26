@@ -51,6 +51,10 @@ func NewDefauleGojaEngine() contract.Engine {
 	return engine
 }
 
+func (e *gojaEngine) RegisterLibrary(file string) error {
+	panic("todo")
+}
+
 func (e *gojaEngine) Exec(tpl string, data interface{}, opt *contract.Option) (string, error) {
 	if opt == nil {
 		opt = &contract.DefaultOption

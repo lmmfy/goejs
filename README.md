@@ -6,9 +6,17 @@
 [![codecov](https://codecov.io/gh/lmmfy/goejs/branch/main/graph/badge.svg)](https://codecov.io/gh/lmmfy/goejs)
 [![GoDoc](https://godoc.org/github.com/lmmfy/goejs?status.svg)](https://godoc.org/github.com/lmmfy/goejs)
 
+<br/>
+<p align="center">
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
+<img src="https://img.shields.io/github/last-commit/lmmfy/goejs?style=flat-square">
+</p>
+
 provider a powerful template by using ejs in go interpreter. But you should **very careful to using it in a high traffic business**.
 
 ## Usage
+
+### basic
 
 ```go
 // default
@@ -26,6 +34,25 @@ got, _ := e.Exec("hello, {%= name %}!", map[string]interface{}{"name": "goejs"},
 fmt.Println(got) // hello, goejs!
 ```
 
+### advanced
+
+register js library
+
+```js
+// lib.js
+if (typeof sum == 'function') { 
+	function sum(a, b) {
+		return a + b;
+	}
+}
+```
+
+```go
+e := otto.NewOttoEngine(ejs.NewJsScript(ejs.WithOpenDelimiter("{"), ejs.WithOpenDelimiter("}")))
+got, _ := e.Exec("{%= sum(1, 2) %}!", nil, nil)
+fmt.Println(got) // 3
+```
+
 goja exists error, use otto first.
 
 ## why use ejs
@@ -34,7 +61,8 @@ compare top js template engine on [bestofjs](https://bestofjs.org/projects?tags=
 
 ## feature
 
-keep most of the features of ejs(js version)
+- keep most of the features of ejs(js version)
+- support register js library
 
 ## diff with ejs
 
