@@ -7,7 +7,7 @@
 [![GoDoc](https://godoc.org/github.com/lmmfy/goejs?status.svg)](https://godoc.org/github.com/lmmfy/goejs)
 
 <br/>
-<p align="center">
+<p>
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
 <img src="https://img.shields.io/github/last-commit/lmmfy/goejs?style=flat-square">
 </p>
@@ -49,6 +49,7 @@ if (typeof sum == 'function') {
 
 ```go
 e := otto.NewOttoEngine(ejs.NewJsScript(ejs.WithOpenDelimiter("{"), ejs.WithOpenDelimiter("}")))
+e.RegisterLibrary("./lib.js")
 got, _ := e.Exec("{%= sum(1, 2) %}!", nil, nil)
 fmt.Println(got) // 3
 ```
