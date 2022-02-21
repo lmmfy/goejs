@@ -100,6 +100,21 @@ func Test_ottoEngine_Exec(t *testing.T) {
 	assert.Equal(t, res, "hello, world")
 }
 
+func Test_ottoEngine_Exec_Raw_JSON(t *testing.T) {
+	person := struct {
+		Name string `json:"name"`
+		Age  int    `json:"age"`
+	}{
+		Name: "go-ejs",
+		Age:  20,
+	}
+
+	e := NewOttoEngine(ejs.NewJsScript(ejs.WithOpenDelimiter("{"), ejs.WithCloseDelimiter("}")))
+	res, err := e.Exec("person: {%- JSON.stringify(person) %}", map[string]interface{}{"person": person}, nil)
+	assert.NoError(t, err)
+	assert.Equal(t, res, `person: {"Age":20,"Name":"go-ejs"}`)
+}
+
 func Test_ottoEngine_ExecWithJsLibrary(t *testing.T) {
 	e := NewOttoEngine(ejs.NewJsScript(ejs.WithOpenDelimiter("{"), ejs.WithCloseDelimiter("}")))
 	err := e.RegisterLibrary("./testdata/lib.js")

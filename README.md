@@ -36,7 +36,26 @@ fmt.Println(got) // hello, goejs!
 
 ### advanced
 
-register js library
+1. keep json original
+
+```go
+person := struct {
+	Name string
+	Age int
+}{
+	Name: "go-ejs",
+	Age: 20,
+}
+
+e := otto.NewDefaultOttoEngine()
+got, _ := e.Exec("person: <%- JSON.stringify(person) %>", map[string]interface{}{"person": person}, &contract.Option{
+	Debug: true,
+})
+fmt.Println(got) // person: {"Age":20,"Name":"go-ejs"}
+```
+
+
+2. register js library
 
 ```js
 // lib.js
@@ -68,7 +87,6 @@ compare top js template engine on [bestofjs](https://bestofjs.org/projects?tags=
 ## diff with ejs
 
 - not support include, partials
-- keep `<%_`, `_%>`
 - not use strict
 - remove opts.scope
 - remove opts.async
